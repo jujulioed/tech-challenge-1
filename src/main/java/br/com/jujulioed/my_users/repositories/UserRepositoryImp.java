@@ -66,4 +66,13 @@ public class UserRepositoryImp implements UserRepository {
                 .param("id", id)
                 .update();
     }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return this.jdbcClient
+                .sql("SELECT * FROM users WHERE username = :username")
+                .param("username", username)
+                .query(User.class)
+                .optional();
+    }
 }

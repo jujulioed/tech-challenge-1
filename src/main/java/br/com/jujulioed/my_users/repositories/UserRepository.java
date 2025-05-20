@@ -11,4 +11,6 @@ public interface UserRepository {
     Integer save(User user);
     Integer update(User user, Long id);
     Integer delete(Long id);
+    Optional<User> findByUsername(String username);
+
 }

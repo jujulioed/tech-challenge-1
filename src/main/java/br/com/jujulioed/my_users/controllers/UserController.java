@@ -1,5 +1,6 @@
 package br.com.jujulioed.my_users.controllers;
 
+import br.com.jujulioed.my_users.dtos.PasswordValidatonRequest;
 import br.com.jujulioed.my_users.entities.User;
 import br.com.jujulioed.my_users.services.UserService;
 import org.slf4j.Logger;
@@ -71,6 +72,14 @@ public class UserController {
         logger.info("DELETE => /users/{}", id);
         this.userService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/validate-password")
+    public ResponseEntity<String> validatePassword(
+            @RequestBody PasswordValidatonRequest request) {
+        logger.info("POST => Validate password endpoint accessed");
+        boolean isValid = this.userService.validatePassword(request.username(), request.password());
+        return ResponseEntity.ok(isValid ? "Valid Password" : "Invalid Password");
     }
 
 }

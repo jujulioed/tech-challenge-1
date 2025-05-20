@@ -44,4 +44,13 @@ public class UserService {
             throw new RuntimeException("User not found");
         }
     }
+
+    public boolean validatePassword(String username, String password) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            return user.getPassword().equals(password);
+        }
+        return false;
+    }
 }
