@@ -7,16 +7,16 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private String user;
+    private String username;
     private String password;
     private LocalDate birthday;
     private LocalDate lastUpdate;
 
-    public User(Long id, String name, String email, String user, String password, LocalDate birthday, LocalDate lastUpdate) {
+    public User(Long id, String name, String email, String username, String password, LocalDate birthday, LocalDate lastUpdate) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.user = user;
+        this.username = username;
         this.password = password;
         this.birthday = birthday;
         this.lastUpdate = lastUpdate;
@@ -51,12 +51,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public String getPassword() {
@@ -88,12 +88,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user1 = (User) o;
-        return Objects.equals(id, user1.id) && Objects.equals(name, user1.name) && Objects.equals(email, user1.email) && Objects.equals(user, user1.user) && Objects.equals(password, user1.password) && Objects.equals(birthday, user1.birthday) && Objects.equals(lastUpdate, user1.lastUpdate);
+        return Objects.equals(id, user1.id) && Objects.equals(name, user1.name) && Objects.equals(email, user1.email) && Objects.equals(username, user1.username) && Objects.equals(password, user1.password) && Objects.equals(birthday, user1.birthday) && Objects.equals(lastUpdate, user1.lastUpdate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, user, password, birthday, lastUpdate);
+        return Objects.hash(id, name, email, username, password, birthday, lastUpdate);
     }
 
 }

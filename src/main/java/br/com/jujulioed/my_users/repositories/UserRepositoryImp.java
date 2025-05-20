@@ -26,21 +26,44 @@ public class UserRepositoryImp implements UserRepository {
 
     @Override
     public List<User> findAll(int size, int offset) {
-        return null;
+        return this.jdbcClient
+                .sql("SELECT * FROM users LIMIT :size OFFSET :offset")
+                .param("size", size)
+                .param("offset", offset)
+                .query(User.class)
+                .list();
     }
 
     @Override
     public Integer save(User user) {
-        return null;
+        return this.jdbcClient
+                .sql("INSERT INTO users (name, email, username, password, birthday) VALUES (:name, :email, :username, :password, :birthday)")
+                .param("name", user.getName())
+                .param("email", user.getEmail())
+                .param("username", user.getUsername())
+                .param("password", user.getPassword())
+                .param("birthday", user.getBirthday())
+                .update();
     }
 
     @Override
     public Integer update(User user, Long id) {
-        return null;
+        return this.jdbcClient
+                .sql("UPDATE users SET name = :name, email = :email, username = :user, password = :password, birthday = :birthday WHERE id = :id")
+                .param("id", user.getId())
+                .param("name", user.getName())
+                .param("email", user.getEmail())
+                .param("user", user.getUsername())
+                .param("password", user.getPassword())
+                .param("birthday", user.getBirthday())
+                .update();
     }
 
     @Override
     public Integer delete(Long id) {
-        return null;
+        return this.jdbcClient
+                .sql("DELETE FROM users WHERE id = :id")
+                .param("id", id)
+                .update();
     }
 }
